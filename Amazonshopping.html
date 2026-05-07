@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Clone - HTML CSS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Amazon Header */
+        .navbar {
+            background: #131921;
+            color: white;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+        }
+        .nav-logo {
+            width: 100px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff9900;
+            cursor: pointer;
+        }
+        .nav-address {
+            margin: 0 15px;
+            font-size: 12px;
+        }
+        .nav-address p:first-child {
+            color: #ccc;
+        }
+        .nav-search {
+            display: flex;
+            flex: 1;
+            height: 40px;
+            max-width: 600px;
+        }
+        .nav-search select {
+            background: #f3f3f3;
+            width: 50px;
+            text-align: center;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+        .nav-search input {
+            width: 100%;
+            border: none;
+            padding: 0 10px;
+            font-size: 16px;
+        }
+        .search-btn {
+            width: 45px;
+            background: #febd69;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            margin-left: 15px;
+        }
+        .nav-item {
+            margin: 0 10px;
+            font-size: 12px;
+        }
+        .nav-item span {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .nav-cart {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+        }
+        .cart-icon {
+            font-size: 28px;
+            margin-right: 5px;
+        }
+
+        /* Sub Nav */
+        .sub-nav {
+            background: #232f3e;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            color: white;
+            font-size: 14px;
+        }
+        .sub-nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: url('https://m.media-amazon.com/images/I/61lwJy4B8PL._SX3000_.jpg') no-repeat center;
+            background-size: cover;
+            height: 350px;
+            position: relative;
+        }
+        .hero-gradient {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(transparent, #e3e6e6);
+        }
+
+        /* Products */
+        .shop-section {
+            background: #e3e6e6;
+            padding: 20px;
+            margin-top: -150px;
+            position: relative;
+        }
+        .box-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1500px;
+            margin: auto;
+        }
+        .box {
+            background: white;
+            width: calc(25% - 15px);
+            padding: 20px;
+            border-radius: 2px;
+        }
+        .box h2 {
+            font-size: 21px;
+            margin-bottom: 15px;
+        }
+        .box img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        .box a {
+            color: #007185;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .box a:hover {
+            color: #c7511f;
+            text-decoration: underline;
+        }
+
+        /* Deal Section */
+        .deal-section {
+            background: white;
+            margin: 20px;
+            padding: 20px;
+        }
+        .deal-title {
+            font-size: 21px;
+            margin-bottom: 15px;
+        }
+        .deal-items {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+        }
+        .deal-card {
+            min-width: 200px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        .deal-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+        }
+        .deal-price {
+            background: #cc0c39;
+            color: white;
+            padding: 3px 6px;
+            font-size: 12px;
+            display: inline-block;
+            margin: 8px 0;
+        }
+        .price {
+            font-size: 18px;
+        }
+        .price span {
+            font-size: 12px;
+            color: #565959;
+            text-decoration: line-through;
+        }
+
+        /* Footer */
+        .footer {
+            background: #232f3e;
+            color: white;
+            margin-top: 40px;
+        }
+        .back-to-top {
+            background: #37475a;
+            text-align: center;
+            padding: 15px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: space-around;
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        .footer-col h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .footer-col a {
+            display: block;
+            color: #ddd;
+            text-decoration: none;
+            font-size: 14px;
+            margin: 8px 0;
+        }
+        .footer-copy {
+            background: #131a22;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .box { width: calc(50% - 10px); }
+            .nav-address, .nav-item { display: none; }
+        }
+        @media (max-width: 600px) {
+            .box { width: 100%; }
+            .hero { height: 200px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-logo">amazon</div>
+        <div class="nav-address">
+            <p>Deliver to</p>
+            <p><strong>India</strong></p>
+        </div>
+        <div class="nav-search">
+            <select><option>All</option></select>
+            <input type="text" placeholder="Search Amazon">
+            <button class="search-btn">🔍</button>
+        </div>
+        <div class="nav-right">
+            <div class="nav-item">
+                <p>Hello, Sign in</p>
+                <span>Account & Lists</span>
+            </div>
+            <div class="nav-item">
+                <p>Returns</p>
+                <span>& Orders</span>
+            </div>
+            <div class="nav-cart">
+                <span class="cart-icon">🛒</span>
+                <span>Cart</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sub Nav -->
+    <div class="sub-nav">
+        <a href="#">☰ All</a>
+        <a href="#">Today's Deals</a>
+        <a href="#">Customer Service</a>
+        <a href="#">Registry</a>
+        <a href="#">Gift Cards</a>
+        <a href="#">Sell</a>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-gradient"></div>
+    </div>
+
+    <!-- Shop Section -->
+    <div class="shop-section">
+        <div class="box-row">
+            <div class="box">
+                <h2>Gaming accessories</h2>
+                <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=400" alt="Gaming">
+                <a href="#">Shop now</a>
+            </div>
+            <div class="box">
+                <h2>Electronics</h2>
+                <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400" alt="Electronics">
+                <a href="#">See more</a>
+            </div>
+            <div class="box">
+                <h2>Beauty picks</h2>
+                <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400" alt="Beauty">
+                <a href="#">Shop now</a>
+            </div>
+            <div class="box">
+                <h2>Home & Kitchen</h2>
+                <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?w=400" alt="Home">
+                <a href="#">See more</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Deals -->
+    <div class="deal-section">
+        <h2 class="deal-title">Today's Deals</h2>
+        <div class="deal-items">
+            <div class="deal-card">
+                <img src="https://m.media-amazon.com/images/I/61SUj2aKoEL._AC_SY200_.jpg" alt="Deal1">
+                <div class="deal-price">Up to 40% off</div>
+                <div class="price">₹1,299 <span>₹2,199</span></div>
+            </div>
+            <div class="deal-card">
+                <img src="https://m.media-amazon.com/images/I/71T5NVOgbpL._AC_SY200_.jpg" alt="Deal2">
+                <div class="deal-price">Up to 25% off</div>
+                <div class="price">₹15,999 <span>₹21,999</span></div>
+            </div>
+            <div class="deal-card">
+                <img src="https://m.media-amazon.com/images/I/61u1VALn6JL._AC_SY200_.jpg" alt="Deal3">
+                <div class="deal-price">Up to 60% off</div>
+                <div class="price">₹799 <span>₹1,999</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="back-to-top">Back to top</div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h3>Get to Know Us</h3>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Press Releases</a>
+            </div>
+            <div class="footer-col">
+                <h3>Connect with Us</h3>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+            </div>
+            <div class="footer-col">
+                <h3>Make Money with Us</h3>
+                <a href="#">Sell on Amazon</a>
+                <a href="#">Become an Affiliate</a>
+                <a href="#">Advertise Products</a>
+            </div>
+        <div class="footer-copy">
+            © 2026, Amazon Clone - HTML CSS Project
+        </div>
+    </footer>
+
+</body>
+</html>
